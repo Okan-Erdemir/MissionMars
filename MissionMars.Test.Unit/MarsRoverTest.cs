@@ -11,7 +11,7 @@ namespace MissionMars.Test.Unit
     public class MarsRoverTest
     {
         [Fact]
-        public void FirstRoverTest()
+        public void RoverTest()
         {
 
             MarsSurface marsSurface = new MarsSurface(5, 5);
@@ -22,15 +22,17 @@ namespace MissionMars.Test.Unit
             {
                 Coordinates = new Coordinates() { X = 1, Y = 2 },
                 DirectionType = DirectionType.N,
-                MarsSurface = marsSurface
-            }, "LMLMLMLMM");
+                MarsSurface = marsSurface,
+                MovedCommands = "LMLMLMLMM"
+            });
 
             var secondRoverCommand = roverAction.MoveCommands(new Rover
             {
                 Coordinates = new Coordinates() { X = 3, Y = 3 },
                 DirectionType = DirectionType.E,
-                MarsSurface = marsSurface
-            }, "MMRMMRMRRM");
+                MarsSurface = marsSurface,
+                MovedCommands = "MMRMMRMRRM"
+            });
 
 
             Assert.NotNull(firstRoverCommand);
@@ -49,6 +51,7 @@ namespace MissionMars.Test.Unit
 
 
         }
+
 
         [Fact]
         public void SamePositionRover()

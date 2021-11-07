@@ -8,11 +8,11 @@ namespace MissionMars.Data.Core.Model
     {
         public MarsSurface(int FirstEdge, int SecondEdge)
         {
-            this.FirstEdge = FirstEdge;
-            this.SecondEdge = SecondEdge;
+            this.EdgeX = FirstEdge;
+            this.EdgeY = SecondEdge;
         }
 
-        public int FirstEdge { get; set; }
-        public int SecondEdge { get; set; }
+        public int EdgeX { get; set; }
+        public int EdgeY { get; set; }
     }
 }

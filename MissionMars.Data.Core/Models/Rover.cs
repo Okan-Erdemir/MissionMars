@@ -10,5 +10,7 @@ namespace MissionMars.Data.Core.Model
         public DirectionType DirectionType { get; set; }
         public Coordinates Coordinates { get; set; }
         public MarsSurface MarsSurface { get; set; }
+
+        public string MovedCommands { get; set; }
     }
 }

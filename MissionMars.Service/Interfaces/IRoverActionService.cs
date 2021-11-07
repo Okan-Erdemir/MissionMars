@@ -7,6 +7,6 @@ namespace MissionMars.Service.Interfaces
 {
     public interface IRoverActionService
     {
-        Rover MoveCommands(Rover rover, string movedCommands);
+        Rover MoveCommands(Rover rover);
     }
 }

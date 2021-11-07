@@ -1,18 +1,28 @@
-﻿using MissionMars.Data.Core.Enums;
+﻿using FluentValidation.Results;
+using MissionMars.Data.Core.Enums;
 using MissionMars.Data.Core.Helpers;
 using MissionMars.Data.Core.Model;
+using MissionMars.Data.Core.Validators;
 using MissionMars.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MissionMars.Service.Services
 {
     public class RoverActionService : IRoverActionService
     {
-        public Rover MoveCommands(Rover rover, string movedCommands)
+        public Rover MoveCommands(Rover rover)
         {
-            foreach (var command in movedCommands)
+            var validationResult = ValidationRover(rover);
+
+            if (!validationResult.IsValid)
+            {
+                throw new Exception(validationResult.Errors.FirstOrDefault()?.ErrorMessage);
+            }
+
+            foreach (var command in rover.MovedCommands)
             {
                 switch (command)
                 {
@@ -33,6 +43,13 @@ namespace MissionMars.Service.Services
             RoverHelper.IsRoverInMarsSurface(rover);
 
             return rover;
+        }
+
+        private static ValidationResult ValidationRover(Rover rover)
+        {
+            var result = new RoverValidator();
+            return result.Validate(rover);
+
         }
 
         private static DirectionType TurnLeft(DirectionType roverDirection)

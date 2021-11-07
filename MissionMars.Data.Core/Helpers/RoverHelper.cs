@@ -9,7 +9,7 @@ namespace MissionMars.Data.Core.Helpers
     {
         public static void IsRoverInMarsSurface(Rover rover)
         {
-            if (rover.Coordinates.X > rover.MarsSurface.FirstEdge || rover.Coordinates.Y > rover.MarsSurface.SecondEdge)
+            if (rover.Coordinates.X > rover.MarsSurface.EdgeX || rover.Coordinates.Y > rover.MarsSurface.EdgeY)
             {
                 throw new ArgumentException("These coordinates cannot be used as the spacecraft will exit the region.");
             }
